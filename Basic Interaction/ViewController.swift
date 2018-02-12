@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+    @IBOutlet weak var labelText: UILabel!
+    
+    
+    @IBAction func buttonAction(_ sender: UIButton)
+    {
+        let title = sender.title(for: .selected)!
+        let text = "\(title) button was pressed."
+        
+        labelText.text = text
+        
+        let styledText = NSMutableAttributedString(string: text)
+        let attributes = [
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: labelText.font.pointSize)
+        ]
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let nameRange = (text as NSString).range(of: title)
+     styledText.setAttributes(attributes, range: nameRange)
+        
+        
     }
-
+    
 
 }
 
